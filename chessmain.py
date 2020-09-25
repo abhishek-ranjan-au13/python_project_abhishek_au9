@@ -3,7 +3,7 @@ This is our main driver file. it will be responsible for handling user input and
 object.
 """
 import pygame as p
-from chess import chessengine
+from chessengine import *
 width = height = 512
 dimension = 8 #dimensions of a chess board are 8x8
 sq_size = height//dimension
@@ -26,7 +26,7 @@ def main():
     screen = p.display.set_mode((width, height))
     clock = p.time.Clock()
     screen.fill(p.Color("white"))
-    gs = chessengine.GameState()
+    gs = GameState()
     validMoves = gs.getValidMoves()
     moveMade = False #flag variables for when a move is made
     
@@ -49,7 +49,7 @@ def main():
                     sq_selected = (row, col)
                     player_clicks.append(sq_selected) #append for both 1st and 2nd clicks
                 if len(player_clicks) == 2: #after 2nd click
-                    move = chessengine.Move(player_clicks[0],player_clicks[1], gs.board)
+                    move = Move(player_clicks[0],player_clicks[1], gs.board)
                     print(move.getchessNotation())
                     if move in validMoves:
                         gs.makeMove(move)
